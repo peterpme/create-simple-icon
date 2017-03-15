@@ -6,8 +6,13 @@ const request = require('request');
 const rp = require('request-promise');
 const argv = require('minimist')(process.argv.slice(2));
 
+if (!argv._.length > 0) {
+    console.log('Please pass in an icon name. Eg: reddit');
+    process.exit(1);
+}
+
 const CLI_ARGS = {
-    iconName: argv.i,
+    iconName: argv._[0],
     color: argv.c,
 }
 
