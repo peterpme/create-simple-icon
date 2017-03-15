@@ -3,6 +3,6 @@
 ## Usage
 
 ```bash
-create-simple-icon reddit -c black
-create-simple-icon facebook -c blue
+csi reddit -c black
+csi facebook -c blue
 ```
