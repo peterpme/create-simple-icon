@@ -1,0 +1,14 @@
+{
+  "name": "create-simple-icon",
+  "version": "0.1.0",
+  "description": "Simply generate icons from simpleicons.org",
+  "main": "index.js",
+  "repository": "git@github.com:peterpme/create-simple-icon.git",
+  "author": "Peter Piekarczyk <peterpiekarczyk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.1.1"
+  }
+}
