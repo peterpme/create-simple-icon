@@ -6,6 +6,9 @@
   "repository": "git@github.com:peterpme/create-simple-icon.git",
   "author": "Peter Piekarczyk <peterpiekarczyk@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "csi": "index.js"
+  },
   "dependencies": {
     "minimist": "^1.2.0",
     "request": "^2.81.0",
