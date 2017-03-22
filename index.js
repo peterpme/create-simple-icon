@@ -45,7 +45,7 @@ if (ARGS.preview) {
   open(url);
 
   log(chalk.green(`Opening ${ARGS.iconName}.svg in your browser...`));
-  process.exit(0);
+  process.exit();
 }
 
 const getIcon = (uri, iconName, iconColor) => {
@@ -59,12 +59,13 @@ const getIcon = (uri, iconName, iconColor) => {
       );
 
       fs.writeFile(`${iconName}.svg`, coloredSvg, (err, done) => {
-        log(chalk.green("Done!"));
+        log(chalk.green(`Done! Look for ${iconName}.svg`));
         process.exit();
       });
     })
     .catch(error => {
       log(chalk.red("Ooops!", error));
+      process.exit(1);
     });
 };
 
