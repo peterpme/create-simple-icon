@@ -21,9 +21,11 @@ Usage
   $ csi <icon-name>
 
 Options
-  --color, -r Color
+  --color, -c Fill icon with this color
 
 Examples
-  csi reddit -c red
-  csi facebook -c blue
+  csi reddit -c red2
+  csi facebook -c blue9
+  csi twitter -c blue4
+  csi snapchat -c yellow4
 ```
