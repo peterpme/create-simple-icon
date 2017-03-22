@@ -1,4 +1,4 @@
-# Create Simple Icon
+# Create Simple Icon 🎨
 
 The power of [Simple Icons](https://simpleicons.org) and [Open Color](https://github.com/yeun/open-color) to generate simple, colored icons!
 
