@@ -20,11 +20,8 @@ $ npm install -g create-simple-icon
 Usage
   $ csi <icon-name> <icon-color>
 
-Options
-  --browse, -b Open the icon in your browser
-
 Examples
   csi twitter red
-  csi facebook blue
+  csi facebook '#eee' (zsh requires quotes)
   csi reddit (returns default color)
 ```
