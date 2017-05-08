@@ -1,6 +1,6 @@
 {
   "name": "create-simple-icon",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Simply generate icons from simpleicons.org",
   "main": "index.js",
   "repository": "git@github.com:peterpme/create-simple-icon.git",
