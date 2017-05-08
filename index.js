@@ -6,39 +6,40 @@ const request = require("request");
 const rp = require("request-promise");
 const chalk = require("chalk");
 const open = require("open");
-const COLORS = require("open-color");
 const argv = require("minimist")(process.argv.slice(2));
 const log = console.log;
 
+const isValidHex = str => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(str);
+const isValidString = str => str && str.length > 2;
+const getUrl = name => `https://simpleicons.org/icons/${name}.svg`;
+
+const handleError = errMsg => {
+  log(chalk.red(errMsg));
+  process.exitCode = 1;
+};
+
+const ERRORS = {
+  missingIcon: "Please pass in an icon name. Eg: reddit",
+  wrongColorNumber: "Please enter a number between 0 and 9",
+  writeFile: "Something went wrong writing file to disk, try again!",
+  missingColor: `
+  Please pass in a color either as:
+    - hex format: #333, #eeeeee,
+    - Open color (https://github.com/yeun/open-color)
+  `
+};
+
 if (!argv._.length > 0) {
-  log(chalk.red("Please pass in an icon name. Eg: reddit"));
-  process.exit(1);
+  handleError(ERRORS.missingIcon);
 }
 
 const ARGS = {
   iconName: argv._[0],
+  iconColor: argv._[1],
   color: argv.c,
-  preview: !!argv.p || !!argv.preview
+  preview: !!argv.p || !!argv.preview,
+  browse: !!argv.b || !!argv.browse
 };
-
-const getUrl = name => `https://simpleicons.org/icons/${name}.svg`;
-
-function handleColor(str) {
-  const [color, number] = str.split(/(\d+)/).filter(Boolean);
-  let hex = COLORS[color];
-  if (!hex) return color;
-
-  if (number > 9) {
-    log(chalk.red("Please select a number between 0 and 9"));
-    process.exit(1);
-  }
-
-  if (hex) {
-    hex = hex[number || 0];
-  }
-
-  return hex;
-}
 
 if (ARGS.preview) {
   const url = getUrl(ARGS.iconName);
@@ -48,7 +49,7 @@ if (ARGS.preview) {
   process.exit();
 }
 
-const getIcon = (uri, iconName, iconColor) => {
+const getSvg = (uri, iconName, iconColor) => {
   rp({
     uri
   })
@@ -63,10 +64,27 @@ const getIcon = (uri, iconName, iconColor) => {
         process.exit();
       });
     })
-    .catch(error => {
-      log(chalk.red("Ooops!", error));
-      process.exit(1);
-    });
+    .catch(err => handleError("writeFile"));
 };
 
-getIcon(getUrl(ARGS.iconName), ARGS.iconName, handleColor(ARGS.color));
+const getIconDetails = (
+  iconName,
+  uri = "https://raw.githubusercontent.com/danleech/simple-icons/develop/_data/simple-icons.json"
+) => {
+  return rp({ uri, json: true }).then(json =>
+    json.icons.find(icon => icon.title.toLowerCase() === iconName.toLowerCase())
+  );
+};
+
+const handleIconColor = str => str;
+
+const getColoredIcon = (iconName, iconColor) => {
+  getIconDetails(iconName).then(icon => {
+    const uri = getUrl(iconName);
+    const color = iconColor ? handleIconColor(iconColor) : `#${icon.hex}`;
+
+    getSvg(uri, iconName, color);
+  });
+};
+
+getColoredIcon(ARGS.iconName, ARGS.iconColor);

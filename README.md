@@ -1,6 +1,6 @@
 # Create Simple Icon 🎨
 
-The power of [Simple Icons](https://simpleicons.org) and [Open Color](https://github.com/yeun/open-color) to generate simple, colored icons!
+The power of [Simple Icons](https://simpleicons.org) to generate icons quickly!
 
 ## Installation
 
@@ -18,14 +18,13 @@ $ npm install -g create-simple-icon
 
 ```bash
 Usage
-  $ csi <icon-name>
+  $ csi <icon-name> <icon-color>
 
 Options
-  --color, -c Fill icon with this color
+  --browse, -b Open the icon in your browser
 
 Examples
-  csi reddit -c red2
-  csi facebook -c blue9
-  csi twitter -c blue4
-  csi snapchat -c yellow4
+  csi twitter red
+  csi facebook blue
+  csi reddit (returns default color)
 ```
