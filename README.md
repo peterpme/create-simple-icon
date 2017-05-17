@@ -25,3 +25,6 @@ Examples
   csi facebook '#eee' (zsh requires quotes)
   csi reddit (returns default color)
 ```
+
+## Requirements
+- Node 6+
