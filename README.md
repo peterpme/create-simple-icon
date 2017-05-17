@@ -1,6 +1,6 @@
 # Create Simple Icon 🎨
 
-<img src="example.gif" width="629">
+<img src="example.gif" width="350">
 
 Colorize and download social media icons seamlessly!
 
