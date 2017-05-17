@@ -1,6 +1,10 @@
 # Create Simple Icon 🎨
 
-The power of [Simple Icons](https://simpleicons.org) to generate icons quickly!
+<img src="example.gif" width="629">
+
+Colorize and download social media icons seamlessly!
+
+Create Simple Icon leverages the power of [Simple Icons](https://simpleicons.org) and then allows you to colorize them anyway you'd like.
 
 ## Installation
 
