@@ -6,12 +6,15 @@ const request = require("request");
 const rp = require("request-promise");
 const chalk = require("chalk");
 const open = require("open");
+const ora = require("ora");
 const argv = require("minimist")(process.argv.slice(2));
 const log = console.log;
 
 const isValidHex = str => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(str);
 const isValidString = str => str && str.length > 2;
 const getUrl = name => `https://simpleicons.org/icons/${name}.svg`;
+const spinner = ora("Generating your Icon...");
+spinner.color = "yellow";
 
 const handleError = errMsg => {
   log(chalk.red(errMsg));
@@ -60,7 +63,7 @@ const getSvg = (uri, iconName, iconColor) => {
       );
 
       fs.writeFile(`${iconName}.svg`, coloredSvg, (err, done) => {
-        log(chalk.green(`Done! Look for ${iconName}.svg`));
+        spinner.succeed(`Done! Look for ${iconName}.svg`);
         process.exit();
       });
     })
@@ -79,6 +82,7 @@ const getIconDetails = (
 const handleIconColor = str => str;
 
 const getColoredIcon = (iconName, iconColor) => {
+  spinner.start();
   getIconDetails(iconName).then(icon => {
     const uri = getUrl(iconName);
     const color = iconColor ? handleIconColor(iconColor) : `#${icon.hex}`;
