@@ -2,9 +2,8 @@
 
 <img src="example.gif" width="550">
 
-Colorize and download social media icons seamlessly!
-
-Create Simple Icon leverages the power of [Simple Icons](https://simpleicons.org) and then allows you to colorize them anyway you'd like.
+Download and colorize branded svg icons in a snap!
+`Create Simple Icon` leverages the power of [Simple Icons](https://simpleicons.org) and then colorizes them anyway you'd like.
 
 ## Installation
 
@@ -28,6 +27,8 @@ Examples
   csi twitter red
   csi facebook '#eee' (zsh requires quotes)
   csi reddit (returns default color)
+  csi reddit -p (opens reddit in your browser)
+  csi -b (opens simpleicons.org in your browser)
 ```
 
 ## Requirements

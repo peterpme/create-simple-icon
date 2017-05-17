@@ -19,6 +19,7 @@ spinner.color = "yellow";
 const handleError = errMsg => {
   log(chalk.red(errMsg));
   process.exitCode = 1;
+  process.exit();
 };
 
 const ERRORS = {
@@ -32,10 +33,6 @@ const ERRORS = {
   `
 };
 
-if (!argv._.length > 0) {
-  handleError(ERRORS.missingIcon);
-}
-
 const ARGS = {
   iconName: argv._[0],
   iconColor: argv._[1],
@@ -44,7 +41,16 @@ const ARGS = {
   browse: !!argv.b || !!argv.browse
 };
 
-if (ARGS.preview) {
+if (!argv._.length > 0 && !ARGS.browse) {
+  handleError(ERRORS.missingIcon);
+}
+
+if (ARGS.browse) {
+  open('https://simpleicons.org');
+  process.exit();
+}
+
+if (ARGS.preview && ARGS.iconName) {
   const url = getUrl(ARGS.iconName);
   open(url);
 
