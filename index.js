@@ -36,6 +36,7 @@ const ERRORS = {
 const ARGS = {
   iconName: argv._[0],
   iconColor: argv._[1],
+  iconOpacity: argv.o,
   color: argv.c,
   preview: !!argv.p || !!argv.preview,
   browse: !!argv.b || !!argv.browse
@@ -58,14 +59,14 @@ if (ARGS.preview && ARGS.iconName) {
   process.exit();
 }
 
-const getSvg = (uri, iconName, iconColor) => {
+const getSvg = (uri, iconName, iconColor, opacity) => {
   rp({
     uri
   })
     .then(response => {
       const coloredSvg = response.replace(
         /(circle|ellipse|path)/g,
-        `$1 fill="${iconColor}"`
+        `$1 fill="${iconColor}" fill-opacity="${opacity}"`
       );
 
       fs.writeFile(`${iconName}.svg`, coloredSvg, (err, done) => {
@@ -87,14 +88,14 @@ const getIconDetails = (
 
 const handleIconColor = str => str;
 
-const getColoredIcon = (iconName, iconColor) => {
+const getColoredIcon = (iconName, iconColor, iconOpacity = 1) => {
   spinner.start();
   getIconDetails(iconName).then(icon => {
     const uri = getUrl(iconName);
     const color = iconColor ? handleIconColor(iconColor) : `#${icon.hex}`;
 
-    getSvg(uri, iconName, color);
+    getSvg(uri, iconName, color, iconOpacity);
   });
 };
 
-getColoredIcon(ARGS.iconName, ARGS.iconColor);
+getColoredIcon(ARGS.iconName, ARGS.iconColor, ARGS.iconOpacity);

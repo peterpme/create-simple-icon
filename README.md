@@ -21,12 +21,13 @@ $ npm install -g create-simple-icon
 
 ```bash
 Usage
-  $ csi <icon-name> <icon-color>
+  $ csi <icon-name> <icon-color> <icon-opacity>
 
 Examples
   csi twitter red
   csi facebook '#eee' (zsh requires quotes)
   csi reddit (returns default color)
+  csi facebook -o 0.5 (returns default color with opacity 0.5)
   csi reddit -p (opens reddit in your browser)
   csi -b (opens simpleicons.org in your browser)
 ```
