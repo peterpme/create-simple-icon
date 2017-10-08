@@ -7,7 +7,7 @@ Download and colorize branded svg icons in a snap!
 
 [![npm version](https://badge.fury.io/js/create-simple-icon.svg)](https://badge.fury.io/js/create-simple-icon)
 [![license badge](https://img.shields.io/npm/l/create-simple-icon.svg?style=flat-square)
-[!license](https://github.com/peterpme/create-simple-icon/blob/master/LICENSE)
+[![license](https://github.com/peterpme/create-simple-icon/blob/master/LICENSE)
 
 ## Installation
 
