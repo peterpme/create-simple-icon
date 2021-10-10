@@ -12,7 +12,7 @@ const log = console.log;
 
 const isValidHex = str => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(str);
 const isValidString = str => str && str.length > 2;
-const getUrl = name => `https://simpleicons.org/icons/${name}.svg`;
+const getUrl = name => `https://simpleicons.org/icons/${name}.svg`.replace(/\s/g, '').toLowerCase();
 const spinner = ora("Generating your Icon...");
 spinner.color = "yellow";
 
